@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licorys - Vinos Seleccionados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-wine-glass"></i> Licorys
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#nosotros">Quiénes Somos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#comentarios">Comentarios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+     
+
+    <!-- Carrusel de Imagenes -->
+    <section id="home" class="carousel-section">
+        <div id="carouselConia" class="carousel slide carousel-custom" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselConia" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#carouselConia" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carouselConia" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#carouselConia" data-bs-slide-to="3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="carousel-placeholder" style="background: linear-gradient(135deg, #722f37 0%, #8b4050 100%);">
+                        <div class="carousel-content">
+                            <h1>Bienvenido a Licorys</h1>
+                            <p>Vinos seleccionados con tradición</p>
+                            <img src="img/fondo (2).png" height="800px">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-placeholder" style="background: linear-gradient(135deg, #8b4050 0%, #722f37 100%);">
+                        <div class="carousel-content">
+                            <h1>Vinos Premium</h1>
+                            <p>Las mejores selecciones de viñedos nacionales e internacionales</p>
+                            <img src="img/vinos.jpg" height="400px">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-placeholder" style="background: linear-gradient(135deg, #d4a574 0%, #c89968 100%);">
+                        <div class="carousel-content">
+                            <h1>Experiencia Rustica</h1>
+                            <p>Disfruta de una experiencia única en nuestro establecimiento</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-placeholder" style="background: linear-gradient(135deg, #c27a7a 0%, #a85a5a 100%);">
+                        <div class="carousel-content">
+                            <h1>Ofertas Especiales</h1>
+                            <p>Descubre nuestras promociones y ofertas del mes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselConia" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselConia" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+    <section class="container mt-5 text-center">
+     <h1>Licorys de muerte</h1>
+    </section>
+
+    <section class="container">
+      <section class="row justify-content-center">
+        <section class="col-8 text-center">
+           <img src="./img/logotipo.png" alt="foto" class="rounded" height="350">
+        <hr>
+        
+
+        </section>
+      </section>
+     </section>
+
+    <!-- Quiénes Somos -->
+    <section id="nosotros" class="section-content">
+        <div class="container">
+            <h2 class="section-title">Quiénes Somos</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="about-image" style="background: linear-gradient(135deg, #d4a574 0%, #c89968 100%); display: flex; align-items: center; justify-content: center;">
+                        <img id="logoLicorys" src="img/vertical (2).jpg" alt="Logo Licorys" style="max-width: 100%; max-height: 400px; object-fit: contain;">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p class="about-text">
+                         Licorys es una licorera bohemia y rústica creada para quienes buscan autenticidad en cada 
+          
+          experiencia. Inspirada en la armonía entre lo natural y lo artesanal, su esencia combina el 
+          
+          encanto del campo con un toque femenino y elegante. Cada botella refleja pasión, tradición y 
+          
+          cuidado por los detalles, ofreciendo sabores únicos que despiertan los sentidos.
+          
+          En Licorys, la calidez del ambiente invita a disfrutar sin prisa, entre risas, música suave y 
+          
+          buena compañía. Más que una licorera, es un espacio donde el alma se inspira y los momentos se 
+          
+          vuelven memorables.
+                    </p>
+                    <h3>by ValCG</h3>
+                    <div class="values-container">
+                        <div class="value-item">
+                            <h5>Calidad</h5>
+                            <p>Productos seleccionados cuidadosamente</p>
+                        </div>
+                        <div class="value-item">
+                            <h5>Tradición</h5>
+                            <p>Experiencia de 20 años en el sector</p>
+                        </div>
+                        <div class="value-item">
+                            <h5>Servicio</h5>
+                            <p>Atención personalizada al cliente</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos y Servicios -->
+    <section id="productos" class="section-content bg-light">
+        <div class="container">
+            <h2 class="section-title">Productos y Servicios</h2>
+            <div class="row" id="productosContainer">
+                <!-- Los productos se cargarán desde JavaScript -->
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <button class="btn btn-custom btn-lg w-100" data-bs-toggle="modal" data-bs-target="#agregarProductoModal">
+                        + Agregar Nuevo Producto
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comentarios -->
+    <section id="comentarios" class="section-content">
+        <div class="container">
+            <h2 class="section-title">Lo que Dicen Nuestros Clientes</h2>
+            <div class="row" id="comentariosContainer">
+                <!-- Los comentarios se cargarán desde JavaScript -->
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <button class="btn btn-custom btn-lg w-100" data-bs-toggle="modal" data-bs-target="#agregarComentarioModal">
+                        + Dejar un Comentario
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Contacto -->
+    <section id="contacto" class="section-content bg-light">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form id="formularioContacto" class="contact-form">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono">
+                        </div>
+                        <div class="mb-3">
+                            <label for="asunto" class="form-label">Asunto</label>
+                            <input type="text" class="form-control" id="asunto" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mensaje" class="form-label">Mensaje</label>
+                            <textarea class="form-control" id="mensaje" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-custom btn-lg w-100">Enviar Mensaje</button>
+                    </form>
+                    <div class="mt-4 contact-info">
+                        <div class="row">
+                    
+                            <div class="col-md-6">
+                                <h5>📞 Contacto</h5>
+                                <p>Teléfono: 3212502101 <br>Email: valcardon057@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Licorys</h5>
+                    <p>Tu tienda de confianza para los mejores vinos y licores seleccionados.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Enlaces Rápidos</h5>
+                    <ul class="quick-links">
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#nosotros">Quiénes Somos</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Síguenos</h5>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2025 Licorys. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Agregar Producto -->
+    <div class="modal fade" id="agregarProductoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-custom text-white">
+                    <h5 class="modal-title">Agregar Nuevo Producto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formProducto">
+                        <div class="mb-3">
+                            <label for="productoNombre" class="form-label">Nombre del Producto</label>
+                            <input type="text" class="form-control" id="productoNombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productoDescripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="productoDescripcion" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productoPrecio" class="form-label">Precio ($)</label>
+                            <input type="number" class="form-control" id="productoPrecio" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productoTipo" class="form-label">Tipo de Producto</label>
+                            <select class="form-control" id="productoTipo" required>
+                                <option value="">Seleccionar...</option>
+                                <option value="Vino Tinto">Vino Tinto</option>
+                                <option value="Vino Blanco">Vino Blanco</option>
+                                <option value="Vino Rosado">Vino Rosado</option>
+                                <option value="Espumante">Espumante</option>
+                                <option value="Licor">Licor</option>
+                                <option value="Whisky">Whisky</option>
+                                <option value="Ron">Ron</option>
+                                <option value="Vodka">Vodka</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-custom" id="btnGuardarProducto">Guardar Producto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Agregar Comentario -->
+    <div class="modal fade" id="agregarComentarioModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-custom text-white">
+                    <h5 class="modal-title">Dejar un Comentario</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formComentario">
+                        <div class="mb-3">
+                            <label for="comentarioNombre" class="form-label">Tu Nombre</label>
+                            <input type="text" class="form-control" id="comentarioNombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comentarioCalificacion" class="form-label">Calificación</label>
+                            <select class="form-control" id="comentarioCalificacion" required>
+                                <option value="">Seleccionar...</option>
+                                <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ Excelente</option>
+                                <option value="⭐⭐⭐⭐">⭐⭐⭐⭐ Muy Bueno</option>
+                                <option value="⭐⭐⭐">⭐⭐⭐ Bueno</option>
+                                <option value="⭐⭐">⭐⭐ Regular</option>
+                                <option value="⭐">⭐ Malo</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comentarioTexto" class="form-label">Tu Comentario</label>
+                            <textarea class="form-control" id="comentarioTexto" rows="4" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-custom" id="btnGuardarComentario">Publicar Comentario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

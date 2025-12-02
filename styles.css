@@ -1,0 +1,738 @@
+/* ==================== ESTILOS GENERALES ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-vino: #5B0A0A;
+    --color-vino-dark: #0f0203;
+    --color-vino-light: #6c2535;
+    --color-beige: #D9C4A1;
+    --color-beige-light: #d7ab71;
+    --color-rosa-viejo: #C48A84;
+    --color-rosa-viejo-light: #ea9d9d;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f1ed;
+}
+
+/* ==================== NAVBAR ==================== */
+.navbar-custom {
+    background: linear-gradient(135deg, var(--color-vino) 0%, var(--color-vino-light) 100%) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-beige) !important;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: var(--color-beige-light) !important;
+    transform: scale(1.05);
+}
+
+.navbar-nav .nav-link {
+    color: var(--color-beige-light) !important;
+    font-weight: 500;
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem !important;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-beige) !important;
+    transform: translateY(-2px);
+}
+
+.navbar-toggler {
+    border-color: var(--color-beige) !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23d4a574' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* ==================== CARRUSEL ==================== */
+.carousel-section {
+    padding: 0;
+    background: linear-gradient(135deg, var(--color-vino) 0%, var(--color-vino-light) 100%);
+}
+
+.carousel-custom {
+    position: relative;
+    height: 500px;
+}
+
+.carousel-item {
+    height: 500px;
+}
+
+.carousel-placeholder {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.carousel-content {
+    text-align: center;
+    color: white;
+    z-index: 2;
+    animation: slideInUp 0.8s ease-out;
+}
+
+.carousel-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+.carousel-content p {
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: rgba(212, 165, 116, 0.5);
+    border-color: var(--color-beige);
+}
+
+.carousel-indicators [data-bs-target].active {
+    background-color: var(--color-beige);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--color-beige);
+    border-radius: 50%;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    opacity: 1;
+    background-color: var(--color-beige-light);
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== SECCIONES ==================== */
+.section-content {
+    padding: 80px 0;
+}
+
+.section-content.bg-light {
+    background-color: #f9f7f4;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-vino);
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-beige), var(--color-rosa-viejo));
+    border-radius: 2px;
+}
+
+/* ==================== SECCIÓN QUIÉNES SOMOS ==================== */
+.about-image {
+    border-radius: 10px;
+    height: 350px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.about-image:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.about-text {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.values-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.value-item {
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(194, 122, 122, 0.1));
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-vino);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.value-item:hover {
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.2), rgba(194, 122, 122, 0.2));
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.value-item h5 {
+    color: var(--color-vino);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.value-item p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* ==================== PRODUCTOS ==================== */
+.product-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-top: 4px solid var(--color-vino);
+    margin-bottom: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-top-color: var(--color-rosa-viejo);
+}
+
+.product-header {
+    background: linear-gradient(135deg, var(--color-beige), var(--color-rosa-viejo-light));
+    /* padding: 30px; */
+    text-align: center;
+    height: 296px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    object-fit: cover;
+}
+
+.product-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    width: auto;
+    height: auto;
+}
+
+.product-icon {
+    font-size: 3rem;
+}
+
+.product-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-type {
+    color: var(--color-rosa-viejo);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.product-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-vino);
+    margin-bottom: 10px;
+}
+
+.product-description {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    flex-grow: 1;
+    line-height: 1.6;
+}
+
+.product-price {
+    font-size: 1.8rem;
+    color: var(--color-vino);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.product-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.product-actions button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background-color: var(--color-beige);
+    color: var(--color-vino);
+}
+
+.btn-edit:hover {
+    background-color: var(--color-beige-light);
+}
+
+.btn-delete {
+    background-color: var(--color-rosa-viejo);
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #a85a5a;
+}
+
+/* ==================== COMENTARIOS ==================== */
+.comment-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid var(--color-beige);
+    transition: all 0.3s ease;
+}
+
+.comment-card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-left-color: var(--color-rosa-viejo);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.comment-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-vino);
+}
+
+.comment-rating {
+    color: #ffc107;
+    font-size: 1rem;
+}
+
+.comment-text {
+    color: #555;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.comment-date {
+    color: #999;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.comment-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.comment-actions button {
+    padding: 6px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-delete-comment {
+    background-color: var(--color-rosa-viejo);
+    color: white;
+}
+
+.btn-delete-comment:hover {
+    background-color: #a85a5a;
+}
+
+/* ==================== FORMULARIO DE CONTACTO ==================== */
+.contact-form {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--color-vino);
+}
+
+.contact-form .form-label {
+    color: var(--color-vino);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.contact-form .form-control {
+    border: 2px solid #e0d5c8;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.contact-form .form-control:focus {
+    border-color: var(--color-vino);
+    box-shadow: 0 0 0 0.2rem rgba(114, 47, 55, 0.25);
+}
+
+.contact-info {
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(194, 122, 122, 0.1));
+    padding: 30px;
+    border-radius: 10px;
+    border-left: 4px solid var(--color-beige);
+}
+
+.contact-info h5 {
+    color: var(--color-vino);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    color: #555;
+    line-height: 1.8;
+}
+
+/* ==================== BOTONES ==================== */
+.btn-custom {
+    background: linear-gradient(135deg, var(--color-vino) 0%, var(--color-vino-light) 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    padding: 10px 30px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.btn-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(114, 47, 55, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-custom:active {
+    transform: translateY(-1px);
+}
+
+.bg-custom {
+    background: linear-gradient(135deg, var(--color-vino) 0%, var(--color-vino-light) 100%);
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    background: linear-gradient(135deg, var(--color-vino-dark) 0%, var(--color-vino) 100%);
+    color: white;
+    padding: 50px 0 20px;
+    margin-top: 80px;
+}
+
+.footer h5 {
+    color: var(--color-beige);
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.footer p {
+    color: #ddd;
+    line-height: 1.8;
+}
+
+.quick-links {
+    list-style: none;
+}
+
+.quick-links li {
+    margin-bottom: 10px;
+}
+
+.quick-links a {
+    color: #ddd;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.quick-links a:hover {
+    color: var(--color-beige);
+    padding-left: 5px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    color: #ddd;
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.social-link:hover {
+    background-color: var(--color-beige);
+    color: var(--color-vino);
+    border-color: var(--color-beige);
+}
+
+.footer hr {
+    border-color: rgba(212, 165, 116, 0.3);
+    margin: 30px 0;
+}
+
+/* ==================== MODAL ==================== */
+.modal-header.bg-custom {
+    background: linear-gradient(135deg, var(--color-vino) 0%, var(--color-vino-light) 100%);
+}
+
+.modal-content {
+    border: none;
+    border-top: 4px solid var(--color-vino);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.modal-body .form-label {
+    color: var(--color-vino);
+    font-weight: 600;
+}
+
+.modal-body .form-control {
+    border: 2px solid #e0d5c8;
+    border-radius: 5px;
+}
+
+.modal-body .form-control:focus {
+    border-color: var(--color-vino);
+    box-shadow: 0 0 0 0.2rem rgba(114, 47, 55, 0.25);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .carousel-custom {
+        height: 300px;
+    }
+
+    .carousel-item {
+        height: 300px;
+    }
+
+    .carousel-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .carousel-content p {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .about-image {
+        height: 250px;
+        margin-bottom: 30px;
+    }
+
+    .values-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+
+    .value-item {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-custom {
+        height: 250px;
+    }
+
+    .carousel-item {
+        height: 250px;
+    }
+
+    .carousel-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .carousel-content p {
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .product-card {
+        margin-bottom: 20px;
+    }
+
+    .comment-card {
+        padding: 15px;
+    }
+
+    .footer {
+        padding: 30px 0 15px;
+    }
+
+    .footer h5 {
+        font-size: 1rem;
+    }
+
+    .social-links {
+        flex-direction: column;
+    }
+
+    .social-link {
+        text-align: center;
+        display: block;
+    }
+}
+
+/* ==================== ANIMACIONES ==================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ==================== UTILIDADES ==================== */
+.text-vino {
+    color: var(--color-vino);
+}
+
+.text-beige {
+    color: var(--color-beige);
+}
+
+.text-rosa {
+    color: var(--color-rosa-viejo);
+}
+
+.bg-vino {
+    background-color: var(--color-vino);
+}
+
+.bg-beige {
+    background-color: var(--color-beige);
+}
+
+.bg-rosa {
+    background-color: var(--color-rosa-viejo);
+}
