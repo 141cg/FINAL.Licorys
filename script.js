@@ -1,5 +1,16 @@
 // ==================== INICIALIZACIÓN ==================== 
 
+// Usuario admin por defecto
+const usuarioAdminDefecto = {
+    id: 1,
+    nombre: "Administrador",
+    email: "admin@licorys.com",
+    contraseña: "admin123",
+    rol: "admin",
+    fechaRegistro: new Date().toISOString(),
+    estado: "activo"
+};
+
 // Productos por defecto
 const productosDefecto = [
 
@@ -9,15 +20,17 @@ const productosDefecto = [
         descripcion: " Descubre Baileys Irish Cream, la mezcla perfecta de whisky irlandés, crema fresca y un toque de cacao que conquista a todos los paladares. Cremoso, suave y delicioso, Baileys es el licor ideal para disfrutar solo, con hielo o en tus cócteles y postres favoritos.",
         precio:109.000,
         tipo: "Baileys",
+        categoria: "Licores Tradicionales",
         imagen: "img/Bailyes.png"
     },
     {
         id: 7,
         nombre: "Buchanan's",
         descripcion:
-          "Buchanan’s es el equilibrio perfecto entre elegancia, carácter y madurez. Envejecido por casi dos décadas, este whisky escocés premium ofrece una experiencia intensa y sofisticada, con notas de roble tostado, frutas secas, chocolate oscuro y un final suave que permanece.",
+          "Buchanan's es el equilibrio perfecto entre elegancia, carácter y madurez. Envejecido por casi dos décadas, este whisky escocés premium ofrece una experiencia intensa y sofisticada, con notas de roble tostado, frutas secas, chocolate oscuro y un final suave que permanece.",
         precio:420.000,
-        tipo: "Whisky",
+        tipo: "Whisky Premium",
+        categoria: "Licores Premium",
         imagen: "img/BUCHANANS-18.png"
     },
     {
@@ -25,7 +38,8 @@ const productosDefecto = [
         nombre: "Don Julio Tequila",
         descripcion: " Descubre Don Julio 70, la edición especial que redefine la experiencia del tequila. Con su innovador proceso de añejamiento en barricas de roble francés y un sabor complejo, suave y lleno de matices, este tequila es el favorito de los amantes de lo exclusivo.",
         precio:410.000,
-        tipo: "Tequila",
+        tipo: "Tequila Premium",
+        categoria: "Licores Premium",
         imagen: "img/DonJulio70.jpg"
     },
     {
@@ -34,6 +48,7 @@ const productosDefecto = [
         descripcion: "Descubre Old Parr, el whisky escocés que combina tradición y fuerza en cada sorbo. Con su característico sabor robusto y suave a la vez, Old Parr es el compañero ideal para quienes buscan calidad y personalidad en un solo licor.",
         precio:390.000,
         tipo: "Whisky",
+        categoria: "Licores Tradicionales",
         imagen: "img/oldparr.jpg"
     },
     {
@@ -42,6 +57,7 @@ const productosDefecto = [
         descripcion: "Disfruta de José Cuervo, el tequila más icónico y reconocido a nivel mundial. Con siglos de tradición y maestría, cada botella ofrece un sabor auténtico, vibrante y lleno de carácter, ideal para cualquier ocasión.",
         precio:92.000,
         tipo: "Tequila",
+        categoria: "Licores Tradicionales",
         imagen: "img/josecuervo.jpg"
     }
 ];
@@ -74,6 +90,7 @@ const comentariosDefecto = [
 // Inicializar localStorage al cargar
 document.addEventListener('DOMContentLoaded', function() {
     inicializarDatos();
+    actualizarNavbarUsuario();
     cargarProductos();
     cargarComentarios();
     configurarEventos();
@@ -93,6 +110,26 @@ function inicializarDatos() {
     // Inicializar mensajes de contacto
     if (!localStorage.getItem('mensajesContacto')) {
         localStorage.setItem('mensajesContacto', JSON.stringify([]));
+    }
+
+    // Inicializar carrito
+    if (!localStorage.getItem('carrito')) {
+        localStorage.setItem('carrito', JSON.stringify([]));
+    }
+
+    // Inicializar pedidos
+    if (!localStorage.getItem('pedidos')) {
+        localStorage.setItem('pedidos', JSON.stringify([]));
+    }
+
+    // Inicializar usuarios con admin por defecto
+    if (!localStorage.getItem('usuarios')) {
+        localStorage.setItem('usuarios', JSON.stringify([usuarioAdminDefecto]));
+    }
+
+    // Inicializar sesión actual
+    if (!localStorage.getItem('usuarioActual')) {
+        localStorage.setItem('usuarioActual', JSON.stringify(null));
     }
 }
 
@@ -118,6 +155,194 @@ function obtenerMensajesContacto() {
 
 function guardarMensajesContacto(mensajes) {
     localStorage.setItem('mensajesContacto', JSON.stringify(mensajes));
+}
+
+function obtenerCarrito() {
+    return JSON.parse(localStorage.getItem('carrito')) || [];
+}
+
+function guardarCarrito(carrito) {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+function obtenerPedidos() {
+    return JSON.parse(localStorage.getItem('pedidos')) || [];
+}
+
+function guardarPedidos(pedidos) {
+    localStorage.setItem('pedidos', JSON.stringify(pedidos));
+}
+
+function agregarAlCarrito(productoId, cantidad = 1) {
+    const productos = obtenerProductos();
+    const producto = productos.find(p => p.id === productoId);
+    
+    if (!producto) {
+        mostrarNotificacion('Producto no encontrado', 'warning');
+        return;
+    }
+
+    let carrito = obtenerCarrito();
+    const itemExistente = carrito.find(item => item.id === productoId);
+
+    if (itemExistente) {
+        itemExistente.cantidad += cantidad;
+    } else {
+        carrito.push({
+            id: productoId,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            imagen: producto.imagen,
+            tipo: producto.tipo,
+            cantidad: cantidad
+        });
+    }
+
+    guardarCarrito(carrito);
+    actualizarContadorCarrito();
+    mostrarNotificacion(`${producto.nombre} agregado al carrito`, 'success');
+}
+
+function eliminarDelCarrito(productoId) {
+    let carrito = obtenerCarrito();
+    carrito = carrito.filter(item => item.id !== productoId);
+    guardarCarrito(carrito);
+    actualizarContadorCarrito();
+}
+
+function actualizarCantidadCarrito(productoId, cantidad) {
+    let carrito = obtenerCarrito();
+    const item = carrito.find(item => item.id === productoId);
+    
+    if (item) {
+        if (cantidad <= 0) {
+            eliminarDelCarrito(productoId);
+        } else {
+            item.cantidad = cantidad;
+            guardarCarrito(carrito);
+        }
+    }
+    actualizarContadorCarrito();
+}
+
+function actualizarContadorCarrito() {
+    const carrito = obtenerCarrito();
+    const total = carrito.reduce((suma, item) => suma + item.cantidad, 0);
+    const contador = document.getElementById('cartCounter');
+    if (contador) {
+        contador.textContent = total;
+        contador.style.display = total > 0 ? 'block' : 'none';
+    }
+}
+
+function calcularTotalCarrito() {
+    const carrito = obtenerCarrito();
+    return carrito.reduce((total, item) => total + (item.precio * item.cantidad), 0);
+}
+
+// ==================== AUTENTICACIÓN ==================== 
+
+function obtenerUsuarios() {
+    return JSON.parse(localStorage.getItem('usuarios')) || [usuarioAdminDefecto];
+}
+
+function guardarUsuarios(usuarios) {
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+}
+
+function obtenerUsuarioActual() {
+    const usuario = localStorage.getItem('usuarioActual');
+    return usuario ? JSON.parse(usuario) : null;
+}
+
+function guardarUsuarioActual(usuario) {
+    localStorage.setItem('usuarioActual', JSON.stringify(usuario));
+}
+
+function registrarUsuario(nombre, email, contraseña) {
+    const usuarios = obtenerUsuarios();
+    
+    // Validar que el email no exista
+    if (usuarios.some(u => u.email === email)) {
+        return { exito: false, mensaje: 'El email ya está registrado' };
+    }
+    
+    // Crear nuevo usuario
+    const nuevoUsuario = {
+        id: Date.now(),
+        nombre: nombre,
+        email: email,
+        contraseña: contraseña, // En producción, usar hash
+        rol: "usuario",
+        fechaRegistro: new Date().toISOString(),
+        estado: "activo"
+    };
+    
+    usuarios.push(nuevoUsuario);
+    guardarUsuarios(usuarios);
+    
+    return { exito: true, mensaje: 'Registro exitoso', usuario: nuevoUsuario };
+}
+
+function loginUsuario(email, contraseña) {
+    const usuarios = obtenerUsuarios();
+    const usuario = usuarios.find(u => u.email === email && u.contraseña === contraseña);
+    
+    if (!usuario) {
+        return { exito: false, mensaje: 'Email o contraseña incorrectos' };
+    }
+    
+    guardarUsuarioActual(usuario);
+    return { exito: true, mensaje: 'Login exitoso', usuario: usuario };
+}
+
+function logoutUsuario() {
+    guardarUsuarioActual(null);
+    guardarCarrito([]); // Limpiar carrito al logout
+}
+
+function actualizarNavbarUsuario() {
+    const usuarioActual = obtenerUsuarioActual();
+    const navbarUsuario = document.getElementById('navbarUsuario');
+    
+    if (!navbarUsuario) return;
+    
+    if (usuarioActual) {
+        navbarUsuario.innerHTML = `
+            <div class="d-flex align-items-center gap-2">
+                <span class="text-light">👤 ${usuarioActual.nombre}</span>
+                <a href="${usuarioActual.rol === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html'}" class="btn btn-sm btn-warning">
+                    ${usuarioActual.rol === 'admin' ? '⚙️ Admin' : '📊 Mi Dashboard'}
+                </a>
+                <button class="btn btn-sm btn-danger" onclick="logoutYRedireccionar()">Logout</button>
+            </div>
+        `;
+    } else {
+        navbarUsuario.innerHTML = `
+            <a href="auth.html" class="btn btn-warning">Ingresar</a>
+        `;
+    }
+}
+
+function logoutYRedireccionar() {
+    logoutUsuario();
+    window.location.href = 'index.html';
+}
+
+function verificarAutenticacion() {
+    const usuarioActual = obtenerUsuarioActual();
+    if (!usuarioActual) {
+        window.location.href = 'auth.html';
+    }
+    return usuarioActual;
+}
+
+function verificarAdministrador() {
+    const usuarioActual = obtenerUsuarioActual();
+    if (!usuarioActual || usuarioActual.rol !== 'admin') {
+        window.location.href = 'index.html';
+    }
+    return usuarioActual;
 }
 
 // ==================== GESTIÓN DE PRODUCTOS ==================== 
@@ -161,13 +386,18 @@ function crearTarjetaProducto(producto) {
                 <p class="product-description">${producto.descripcion}</p>
                 <p class="product-price">$${parseFloat(producto.precio).toFixed(2)}</p>
                 <div class="product-actions">
-                    <button class="btn-edit" onclick="abrirEditarProducto(${producto.id})">Editar</button>
-                    <button class="btn-delete" onclick="eliminarProducto(${producto.id})">Eliminar</button>
+                    <button class="btn-detail" onclick="irAlDetalle(${producto.id})">Ver Detalle</button>
+                    <button class="btn-cart" onclick="agregarAlCarrito(${producto.id})">🛒 Agregar</button>
                 </div>
             </div>
         </div>
     `;
     return col;
+}
+
+function irAlDetalle(productoId) {
+    localStorage.setItem('productoDetalleId', productoId);
+    window.location.href = 'product-detail.html';
 }
 
 function abrirEditarProducto(id) {
@@ -254,9 +484,6 @@ function eliminarComentario(id) {
 // ==================== EVENTOS ==================== 
 
 function configurarEventos() {
-    // Evento para guardar producto
-    document.getElementById('btnGuardarProducto').addEventListener('click', guardarProducto);
-
     // Evento para guardar comentario
     document.getElementById('btnGuardarComentario').addEventListener('click', guardarComentario);
 
@@ -264,56 +491,7 @@ function configurarEventos() {
     document.getElementById('formularioContacto').addEventListener('submit', enviarFormularioContacto);
 
     // Limpiar modales al cerrar
-    document.getElementById('agregarProductoModal').addEventListener('hidden.bs.modal', limpiarFormularioProducto);
     document.getElementById('agregarComentarioModal').addEventListener('hidden.bs.modal', limpiarFormularioComentario);
-}
-
-function guardarProducto() {
-    const nombre = document.getElementById('productoNombre').value.trim();
-    const descripcion = document.getElementById('productoDescripcion').value.trim();
-    const precio = parseFloat(document.getElementById('productoPrecio').value);
-    const tipo = document.getElementById('productoTipo').value;
-
-    if (!nombre || !descripcion || !precio || !tipo) {
-        mostrarNotificacion('Por favor completa todos los campos', 'warning');
-        return;
-    }
-
-    let productos = obtenerProductos();
-    const editando = document.getElementById('formProducto').dataset.editando;
-
-    if (editando) {
-        // Modo edición
-        const index = productos.findIndex(p => p.id === parseInt(editando));
-        if (index !== -1) {
-            productos[index] = {
-                ...productos[index],
-                nombre,
-                descripcion,
-                precio,
-                tipo
-            };
-        }
-        delete document.getElementById('formProducto').dataset.editando;
-        document.getElementById('btnGuardarProducto').textContent = 'Guardar Producto';
-        mostrarNotificacion('Producto actualizado exitosamente', 'success');
-    } else {
-        // Nuevo producto
-        const nuevoProducto = {
-            id: Date.now(),
-            nombre,
-            descripcion,
-            precio,
-            tipo
-        };
-        productos.push(nuevoProducto);
-        mostrarNotificacion('Producto agregado exitosamente', 'success');
-    }
-
-    guardarProductos(productos);
-    cargarProductos();
-    limpiarFormularioProducto();
-    bootstrap.Modal.getInstance(document.getElementById('agregarProductoModal')).hide();
 }
 
 function guardarComentario() {
@@ -365,6 +543,7 @@ function enviarFormularioContacto(e) {
         telefono,
         asunto,
         mensaje,
+        estado: 'nuevo',
         fecha: new Date().toISOString()
     };
 
@@ -377,12 +556,6 @@ function enviarFormularioContacto(e) {
 }
 
 // ==================== FUNCIONES AUXILIARES ==================== 
-
-function limpiarFormularioProducto() {
-    document.getElementById('formProducto').reset();
-    delete document.getElementById('formProducto').dataset.editando;
-    document.getElementById('btnGuardarProducto').textContent = 'Guardar Producto';
-}
 
 function limpiarFormularioComentario() {
     document.getElementById('formComentario').reset();

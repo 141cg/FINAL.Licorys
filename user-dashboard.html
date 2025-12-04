@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Dashboard - Licorys</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-wine-glass"></i> Licorys
+            </a>
+            <div style="margin-left: auto;">
+                <a href="index.html#productos" class="btn btn-warning btn-sm me-2">🛍️ Comprar Más</a>
+                <button class="btn btn-danger btn-sm" onclick="logoutYRedireccionar()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard -->
+    <section class="section-content">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-3">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <div style="font-size: 60px; margin-bottom: 15px;">👤</div>
+                            <h5 id="nombreUsuario">Usuario</h5>
+                            <p class="text-muted small" id="emailUsuario">email@ejemplo.com</p>
+                            <hr>
+                            <p class="small"><strong>Miembro desde:</strong></p>
+                            <p class="text-muted small" id="fechaRegistro">2025-12-04</p>
+                        </div>
+                    </div>
+
+                    <div class="list-group">
+                        <button class="list-group-item list-group-item-action active" onclick="mostrarSeccion('compras')">
+                            📦 Mis Compras
+                        </button>
+                        <button class="list-group-item list-group-item-action" onclick="mostrarSeccion('perfil')">
+                            👤 Mi Perfil
+                        </button>
+                        <button class="list-group-item list-group-item-action" onclick="mostrarSeccion('direcciones')">
+                            📍 Mis Direcciones
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contenido Principal -->
+                <div class="col-md-9">
+                    <!-- Mis Compras -->
+                    <div id="seccionCompras" class="seccion-activa">
+                        <h2>📦 Mis Compras</h2>
+                        <hr>
+                        <div id="comprasContainer">
+                            <!-- Las compras se cargarán aquí -->
+                        </div>
+                    </div>
+
+                    <!-- Mi Perfil -->
+                    <div id="seccionPerfil" class="seccion-oculta">
+                        <h2>👤 Mi Perfil</h2>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Información Personal</h5>
+                                        <div class="mb-3">
+                                            <label class="form-label"><strong>Nombre:</strong></label>
+                                            <p id="perfilNombre">-</p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label"><strong>Email:</strong></label>
+                                            <p id="perfilEmail">-</p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label"><strong>Estado:</strong></label>
+                                            <p><span class="badge bg-success">Activo</span></p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label"><strong>Miembro desde:</strong></label>
+                                            <p id="perfilFecha">-</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Cambiar Contraseña</h5>
+                                        <form id="formCambiarContraseña">
+                                            <div class="mb-3">
+                                                <label for="contraseñaActual" class="form-label">Contraseña Actual</label>
+                                                <input type="password" class="form-control" id="contraseñaActual" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="contraseñaNueva" class="form-label">Nueva Contraseña</label>
+                                                <input type="password" class="form-control" id="contraseñaNueva" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="contraseñaConfirmar" class="form-label">Confirmar Nueva Contraseña</label>
+                                                <input type="password" class="form-control" id="contraseñaConfirmar" required>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mis Direcciones -->
+                    <div id="seccionDirecciones" class="seccion-oculta">
+                        <h2>📍 Mis Direcciones</h2>
+                        <hr>
+                        <div id="direccionesContainer">
+                            <!-- Las direcciones se cargarán aquí -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>&copy; 2025 Licorys. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .seccion-oculta {
+            display: none;
+        }
+
+        .seccion-activa {
+            display: block;
+        }
+
+        .compra-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .compra-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .compra-numero {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--color-vino);
+        }
+
+        .compra-estado {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .estado-pendiente {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .estado-entregado {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .compra-items {
+            margin: 15px 0;
+        }
+
+        .compra-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .compra-item:last-child {
+            border-bottom: none;
+        }
+
+        .compra-item-info {
+            flex: 1;
+        }
+
+        .compra-item-nombre {
+            font-weight: 600;
+            color: var(--color-vino);
+        }
+
+        .compra-item-tipo {
+            color: #666;
+            font-size: 0.85em;
+        }
+
+        .compra-item-precio {
+            font-weight: bold;
+            color: var(--color-vino);
+        }
+
+        .compra-totales {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid var(--color-beige);
+        }
+
+        .compra-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .compra-total-final {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--color-vino);
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="user-dashboard.js"></script>
+</body>
+</html>
